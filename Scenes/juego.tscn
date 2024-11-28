@@ -1,0 +1,131 @@
+[gd_scene load_steps=12 format=3 uid="uid://cqbkli3357oru"]
+
+[ext_resource type="Texture2D" uid="uid://cd2oxc7sxiau7" path="res://imágenes/space_stars-173604.jpeg" id="1_3x48e"]
+[ext_resource type="Script" path="res://Scripts/juego1.gd" id="1_br7f7"]
+[ext_resource type="PackedScene" uid="uid://slxt3shmsw4c" path="res://Scenes/nave.tscn" id="3_wqv6x"]
+[ext_resource type="AudioStream" uid="uid://by7nplat2nmoh" path="res://Música/enemyImpact.mp3" id="5_3tyt7"]
+[ext_resource type="Texture2D" uid="uid://dasap0ugx5tqu" path="res://imágenes/playerLife1_red.png" id="5_6r0dq"]
+[ext_resource type="AudioStream" uid="uid://dfkpcvab30ia6" path="res://Música/asteroideImpact2.mp3" id="6_4mf7b"]
+[ext_resource type="PackedScene" uid="uid://bvvsjmlaxvh6e" path="res://Scenes/star.tscn" id="7_hdutq"]
+[ext_resource type="AudioStream" uid="uid://bwiwfh0hwofvc" path="res://Música/AKMV-18_-_Battle_Trance (mp3cut.net).mp3" id="8_5t2a6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4p7k"]
+size = Vector2(3.74999, 753)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcv33"]
+size = Vector2(1279, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7mds"]
+size = Vector2(1291, 2)
+
+[node name="Juego" type="Node2D"]
+script = ExtResource("1_br7f7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="Nave" parent="." instance=ExtResource("3_wqv6x")]
+
+[node name="Limite" type="Node2D" parent="."]
+
+[node name="IzqLimite" type="StaticBody2D" parent="Limite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limite/IzqLimite"]
+position = Vector2(1.25003, 335.5)
+shape = SubResource("RectangleShape2D_c4p7k")
+
+[node name="DerLimite" type="StaticBody2D" parent="Limite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limite/DerLimite"]
+position = Vector2(1278.88, 356)
+shape = SubResource("RectangleShape2D_c4p7k")
+
+[node name="ArriLimite" type="StaticBody2D" parent="Limite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limite/ArriLimite"]
+position = Vector2(647.5, 3)
+shape = SubResource("RectangleShape2D_qcv33")
+
+[node name="AbajLimite" type="StaticBody2D" parent="Limite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limite/AbajLimite"]
+position = Vector2(644.5, 720)
+shape = SubResource("RectangleShape2D_x7mds")
+
+[node name="HUD" type="Node2D" parent="."]
+
+[node name="Puntuacón" type="Label" parent="HUD"]
+offset_left = 1008.0
+offset_top = 8.0
+offset_right = 1056.0
+offset_bottom = 32.0
+text = "Score:"
+
+[node name="PuntValor" type="Label" parent="HUD"]
+offset_left = 1064.0
+offset_top = 8.0
+offset_right = 1080.0
+offset_bottom = 32.0
+text = "0"
+
+[node name="Vidas" type="Label" parent="HUD"]
+offset_left = 1008.0
+offset_top = 32.0
+offset_right = 1056.0
+offset_bottom = 56.0
+text = "Vidas:"
+
+[node name="Vida1" type="Sprite2D" parent="HUD"]
+position = Vector2(1072, 48)
+scale = Vector2(0.492424, 0.557692)
+texture = ExtResource("5_6r0dq")
+offset = Vector2(0, -5)
+
+[node name="Vida2" type="Sprite2D" parent="HUD"]
+position = Vector2(1096, 48)
+scale = Vector2(0.492424, 0.557692)
+texture = ExtResource("5_6r0dq")
+offset = Vector2(0, -5)
+
+[node name="Vida3" type="Sprite2D" parent="HUD"]
+position = Vector2(1120, 48)
+scale = Vector2(0.492424, 0.557692)
+texture = ExtResource("5_6r0dq")
+offset = Vector2(0, -5)
+
+[node name="music" type="Node2D" parent="."]
+
+[node name="juegoMusic" type="AudioStreamPlayer2D" parent="music"]
+
+[node name="sonidos" type="Node2D" parent="."]
+
+[node name="enemyImpact" type="AudioStreamPlayer2D" parent="sonidos"]
+stream = ExtResource("5_3tyt7")
+volume_db = -19.349
+
+[node name="asteroideImpact" type="AudioStreamPlayer2D" parent="sonidos"]
+stream = ExtResource("6_4mf7b")
+volume_db = -27.814
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 675)
+
+[node name="fondo" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(659.25, 376)
+scale = Vector2(0.923438, 0.903334)
+texture = ExtResource("1_3x48e")
+
+[node name="star" parent="." instance=ExtResource("7_hdutq")]
+position = Vector2(296, -40)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Node2D"]
+stream = ExtResource("8_5t2a6")
+volume_db = -24.188
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

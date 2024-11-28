@@ -1,0 +1,154 @@
+[gd_scene load_steps=12 format=3 uid="uid://ceseg53p31u4i"]
+
+[ext_resource type="Script" path="res://Scripts/opciones.gd" id="1_kkf6s"]
+[ext_resource type="Texture2D" uid="uid://cgc65e1lxhw6g" path="res://imágenes/planetas-en-el-espacio-3897.jpeg" id="2_s8j1o"]
+[ext_resource type="Texture2D" uid="uid://dd1ul70xflumk" path="res://imágenes/star_gold.png" id="3_h36th"]
+[ext_resource type="FontFile" uid="uid://b53bkqkpvxebp" path="res://fuente/Nightmare Codehack.otf" id="3_vaprs"]
+[ext_resource type="Texture2D" uid="uid://cuxdc13vrwwvl" path="res://imágenes/pill_red.png" id="4_t7cmf"]
+[ext_resource type="AudioStream" uid="uid://cg3n3bjc6pu5" path="res://Música/space.mp3" id="5_6u2pt"]
+[ext_resource type="Texture2D" uid="uid://dk0crtitfgt8v" path="res://imágenes/enemyBlack1.png" id="6_wq4a7"]
+[ext_resource type="Texture2D" uid="uid://dln78akxn4mkt" path="res://imágenes/Meteors/meteorGrey_big1.png" id="7_7chql"]
+[ext_resource type="Texture2D" uid="uid://dx78khkw2symx" path="res://imágenes/OIP (2).jpeg" id="8_ayl0j"]
+[ext_resource type="Texture2D" uid="uid://bpaitr578shgv" path="res://imágenes/istockphoto-1193231012-170667a.jpg" id="9_w8w5e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mh5j2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Opciones" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kkf6s")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_s8j1o")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.504
+anchor_top = 0.627
+anchor_right = 0.504
+anchor_bottom = 0.627
+offset_left = -144.12
+offset_top = 142.56
+offset_right = 143.88
+offset_bottom = 217.56
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Atrás" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_mh5j2")
+text = "ATRÁS"
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.514
+anchor_top = 0.397
+anchor_right = 0.514
+anchor_bottom = 0.397
+offset_left = -496.92
+offset_top = -172.84
+offset_right = 496.08
+offset_bottom = 172.16
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_vaprs")
+theme_override_font_sizes/font_size = 50
+text = "- Derrota a enemigos y recolecta estrellas para
+ obtener la mayor puntuación posible.
+- Dispara a los enemigos, esquiva asteroides y explosiones .
+- Recoge estrellas doradas para sumar más puntos.
+- Recupera vida recogiendo el ítem especial.
+
+"
+
+[node name="Label2" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.514
+anchor_top = 0.397
+anchor_right = 0.514
+anchor_bottom = 0.397
+offset_left = -379.92
+offset_top = 128.16
+offset_right = -189.92
+offset_bottom = 181.16
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_vaprs")
+theme_override_font_sizes/font_size = 50
+text = "Movimiento"
+
+[node name="Label3" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.514
+anchor_top = 0.397
+anchor_right = 0.514
+anchor_bottom = 0.397
+offset_left = -117.92
+offset_top = 132.16
+offset_right = 67.08
+offset_bottom = 182.16
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_vaprs")
+theme_override_font_sizes/font_size = 50
+text = "Disparar"
+
+[node name="StarGold" type="Sprite2D" parent="ColorRect"]
+position = Vector2(1070, 299)
+texture = ExtResource("3_h36th")
+
+[node name="PillRed" type="Sprite2D" parent="ColorRect"]
+position = Vector2(923, 347)
+scale = Vector2(1.72727, 1.69048)
+texture = ExtResource("4_t7cmf")
+
+[node name="EnemyBlack1" type="Sprite2D" parent="ColorRect"]
+position = Vector2(830, 193)
+scale = Vector2(0.448925, 0.529762)
+texture = ExtResource("6_wq4a7")
+
+[node name="MeteorGreyBig1" type="Sprite2D" parent="ColorRect"]
+position = Vector2(1189, 250)
+scale = Vector2(0.363095, 0.363095)
+texture = ExtResource("7_7chql")
+
+[node name="Oip(2)" type="Sprite2D" parent="ColorRect"]
+position = Vector2(610, 502)
+scale = Vector2(0.45572, 0.405063)
+texture = ExtResource("8_ayl0j")
+
+[node name="Istockphoto-1193231012-170667a" type="Sprite2D" parent="ColorRect"]
+position = Vector2(371, 523)
+scale = Vector2(0.466463, 0.45814)
+texture = ExtResource("9_w8w5e")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_6u2pt")
+autoplay = true
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/Atrás" to="." method="_on_atrás_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Atrás" to="." method="_on_salir_pressed"]

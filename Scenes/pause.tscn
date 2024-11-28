@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3 uid="uid://mxpkcdw5sv4n"]
+
+[ext_resource type="Script" path="res://Scripts/pause.gd" id="1_pvnxa"]
+[ext_resource type="Texture2D" uid="uid://cgc65e1lxhw6g" path="res://imágenes/planetas-en-el-espacio-3897.jpeg" id="2_mt22l"]
+[ext_resource type="FontFile" uid="uid://b53bkqkpvxebp" path="res://fuente/Nightmare Codehack.otf" id="3_mc2i8"]
+[ext_resource type="AudioStream" uid="uid://cg3n3bjc6pu5" path="res://Música/space.mp3" id="4_08ey2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugfl7"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11021"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mh5j2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Menú" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pvnxa")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_mt22l")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 362.0
+offset_top = 81.0
+offset_right = 854.0
+offset_bottom = 282.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_mc2i8")
+theme_override_font_sizes/font_size = 200
+text = "PAUSED"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.471
+anchor_top = 0.853
+anchor_right = 0.471
+anchor_bottom = 0.853
+offset_left = -200.88
+offset_top = -301.16
+offset_right = 203.12
+offset_bottom = 68.84
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="resume" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_mc2i8")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_ugfl7")
+text = "RESUME"
+
+[node name="restart" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_mc2i8")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_11021")
+text = "RESTART"
+
+[node name="quit" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_mc2i8")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_mh5j2")
+text = "QUIT"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_08ey2")
+autoplay = true
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/resume" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/restart" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/quit" to="." method="_on_main_menu_button_pressed"]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://tldfsiv0mc5m"]
+
+[ext_resource type="Script" path="res://Scripts/vida.gd" id="1_m1sr8"]
+[ext_resource type="Texture2D" uid="uid://cuxdc13vrwwvl" path="res://imágenes/pill_red.png" id="2_tmemn"]
+
+[sub_resource type="Animation" id="Animation_dcrqi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h53db"]
+resource_name = "new_animation"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 750)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pofw0"]
+_data = {
+"RESET": SubResource("Animation_dcrqi"),
+"new_animation": SubResource("Animation_h53db")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wuxqh"]
+size = Vector2(21, 22)
+
+[node name="vida" type="Node2D"]
+script = ExtResource("1_m1sr8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_tmemn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_pofw0")
+}
+autoplay = "new_animation"
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_wuxqh")
+
+[connection signal="animation_finished" from="Sprite2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5va5pyat4t8f"]
+
+[ext_resource type="Script" path="res://Scripts/bala.gd" id="1_70vs6"]
+[ext_resource type="Texture2D" uid="uid://c0ro65q7maoix" path="res://imágenes/fire07.png" id="2_b8hrk"]
+[ext_resource type="AudioStream" uid="uid://bx4crdux6ju4q" path="res://Música/retro-laser-1-236669.mp3" id="3_5r1gf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qoos8"]
+size = Vector2(15, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xqin"]
+size = Vector2(15, 18)
+
+[node name="Bala" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(550, 512)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_70vs6")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(25, 22.0625)
+scale = Vector2(1, 0.584676)
+texture = ExtResource("2_b8hrk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(25.5, 22)
+shape = SubResource("RectangleShape2D_qoos8")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D" groups=["bala"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+position = Vector2(25.5, 22)
+shape = SubResource("RectangleShape2D_3xqin")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_5r1gf")
+volume_db = -15.721
+autoplay = true
+
+[connection signal="area_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_area_entered"]

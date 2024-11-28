@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://clskl4x2wiwp4"]
+
+[ext_resource type="Script" path="res://Scripts/asteroide.gd" id="1_wtpoi"]
+[ext_resource type="Texture2D" uid="uid://csysm7jls4qb5" path="res://imágenes/Meteors/meteorGrey_med2.png" id="2_t1xy2"]
+
+[sub_resource type="Animation" id="Animation_ckb8j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-105, -67)]
+}
+
+[sub_resource type="Animation" id="Animation_jbh5v"]
+resource_name = "animacion"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-105, -67), Vector2(-30, 766)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_isong"]
+_data = {
+"RESET": SubResource("Animation_ckb8j"),
+"animacion": SubResource("Animation_jbh5v")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_edy3a"]
+size = Vector2(45, 41.5)
+
+[node name="asteroide" type="Node2D"]
+script = ExtResource("1_wtpoi")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(-105, -67)
+texture = ExtResource("2_t1xy2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="sprite"]
+libraries = {
+"": SubResource("AnimationLibrary_isong")
+}
+autoplay = "animacion"
+
+[node name="Area2D" type="Area2D" parent="sprite" groups=["asteroide", "enemigo"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sprite/Area2D"]
+position = Vector2(0.5, 1.25)
+shape = SubResource("RectangleShape2D_edy3a")
+
+[connection signal="animation_finished" from="sprite/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="sprite/Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bwiwfh0hwofvc"
+path="res://.godot/imported/AKMV-18_-_Battle_Trance (mp3cut.net).mp3-59582123acdf52eba5d2c4572b0fc87a.mp3str"
+
+[deps]
+
+source_file="res://Música/AKMV-18_-_Battle_Trance (mp3cut.net).mp3"
+dest_files=["res://.godot/imported/AKMV-18_-_Battle_Trance (mp3cut.net).mp3-59582123acdf52eba5d2c4572b0fc87a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

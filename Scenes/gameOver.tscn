@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://bg3olw403xf3v"]
+
+[ext_resource type="Script" path="res://Scripts/game_over.gd" id="1_6rqp0"]
+[ext_resource type="Texture2D" uid="uid://cgc65e1lxhw6g" path="res://imágenes/planetas-en-el-espacio-3897.jpeg" id="2_5d3qi"]
+[ext_resource type="AudioStream" uid="uid://cg3n3bjc6pu5" path="res://Música/space.mp3" id="3_o4ndi"]
+[ext_resource type="FontFile" uid="uid://b53bkqkpvxebp" path="res://fuente/Nightmare Codehack.otf" id="3_rwmqb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mh5j2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Menú" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6rqp0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5d3qi")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.471
+anchor_top = 0.853
+anchor_right = 0.471
+anchor_bottom = 0.853
+offset_left = -124.88
+offset_top = -56.16
+offset_right = 126.12
+offset_bottom = 56.84
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="OK" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_rwmqb")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_mh5j2")
+text = "OK"
+
+[node name="score_label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 294.0
+offset_right = 828.0
+offset_bottom = 462.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_rwmqb")
+theme_override_font_sizes/font_size = 75
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 362.0
+offset_top = 81.0
+offset_right = 1068.0
+offset_bottom = 282.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_rwmqb")
+theme_override_font_sizes/font_size = 200
+text = "GAME OVER"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_o4ndi")
+autoplay = true
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/OK" to="." method="_on_ok_pressed"]

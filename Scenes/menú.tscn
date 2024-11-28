@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwcat36cssk0l"]
+
+[ext_resource type="Script" path="res://Scripts/menú.gd" id="1_dbfeh"]
+[ext_resource type="Texture2D" uid="uid://cgc65e1lxhw6g" path="res://imágenes/planetas-en-el-espacio-3897.jpeg" id="2_fqmev"]
+[ext_resource type="FontFile" uid="uid://b53bkqkpvxebp" path="res://fuente/Nightmare Codehack.otf" id="3_a7k02"]
+[ext_resource type="AudioStream" uid="uid://cg3n3bjc6pu5" path="res://Música/space.mp3" id="3_jgbwo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2q0px"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iqmjb"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mh5j2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Menú" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dbfeh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_fqmev")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = -33.0
+offset_right = 189.0
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Inicio" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_a7k02")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_2q0px")
+text = "JUGAR"
+flat = true
+
+[node name="Opciones" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_a7k02")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_iqmjb")
+text = "INSTRUCCIONES"
+
+[node name="Salir" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_a7k02")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_mh5j2")
+text = "SALIR"
+
+[node name="music" type="Node2D" parent="."]
+
+[node name="menuMusic" type="AudioStreamPlayer2D" parent="music"]
+stream = ExtResource("3_jgbwo")
+autoplay = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 67.0
+offset_right = 1230.0
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_a7k02")
+theme_override_font_sizes/font_size = 180
+text = "Havoc in the Galaxy"
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/Inicio" to="." method="_on_inicio_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Opciones" to="." method="_on_opciones_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Salir" to="." method="_on_salir_pressed"]
